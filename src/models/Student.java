@@ -1,6 +1,6 @@
 package models;
 
-public class Student extends Person{
+public class Student extends Human{
     private String university;
     private int course;
 

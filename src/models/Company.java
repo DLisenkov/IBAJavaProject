@@ -1,13 +1,13 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
-class Company {
+public class Company {
     private String name;
     private String city;
     private final double TAX = 0.13;
-    //private Employee[] employees;
-    private ArrayList<Employee> employees;
+    private List<Employee> employees;
 
     Company() {}
 
@@ -33,33 +33,11 @@ class Company {
         this.city = city;
     }
 
-    public ArrayList<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
     public void spawnEmployee(Employee employee) {
         employees.add(employee);
     }
-
-    public boolean checkAnEmployeeInCompany(String firstName) {
-        for (Employee employee: employees) {
-            if (firstName.equals(employee.getFirstName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /*
-     * public Employee spawnEmployee() {
-     *     return new Employee();
-     * }
-     */
-
-    /*
-     * protected String changeEmployeeName(Employee employee, String newName) {
-     *     employee.setFirstName(newName);
-     *     return employee.getFirstName();
-     * }
-     */
 }

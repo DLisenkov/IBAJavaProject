@@ -2,11 +2,12 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class MedicalCenter {
     private String doctorsName;
     private final int INSURANCE = 100;
-    ArrayList<Visitor> queue = new ArrayList<>();
+    List<Appointment> queue = new ArrayList<>();
 
     public MedicalCenter(String doctorsName) {
         this.doctorsName = doctorsName;
@@ -20,36 +21,36 @@ public class MedicalCenter {
         this.doctorsName = doctorsName;
     }
 
-    public ArrayList<Visitor> getQueue() {
+    public List<Appointment> getQueue() {
         return queue;
     }
 
-    public double calculateCostOfInsurance(Visitor visitor) {
-        return visitor.discountCalculation() * INSURANCE;
+    public double calculateCostOfInsurance(Person person) {
+        return Appointment.discountCalculation(person) * INSURANCE;
     }
 
-    public void initialQueue(ArrayList<Visitor> visitors) {
-        Collections.sort(visitors);
-        for (int i = 0; i < visitors.size(); i++) {
-            therapistTraffic(visitors.get(i));
+    public void initialQueue(List<Appointment> queue) {
+        Collections.sort(queue);
+        for (Appointment record : queue) {
+            therapistTraffic(record);
         }
     }
 
-    public void therapistTraffic(Visitor visitor) {
+    public void therapistTraffic(Appointment record) {
         boolean flag = false;
 
-        if (visitor.isHasTicket()) {
+        if (record.isHasTicket()) {
             for (int i = 0; i < queue.size(); i++) {
                 if (!queue.get(i).isHasTicket()) {
                     if (i <= 2) {
-                        queue.add(i, visitor);
+                        queue.add(i, record);
                         flag = true;
                         break;
                     } else {
                         if (queue.get(i - 1).isHasTicket() && queue.get(i - 2).isHasTicket() && queue.get(i - 3).isHasTicket()) {
                             continue;
                         } else {
-                            queue.add(i, visitor);
+                            queue.add(i, record);
                             flag = true;
                             break;
                         }
@@ -57,10 +58,10 @@ public class MedicalCenter {
                 }
             }
             if (!flag) {
-                queue.add(visitor);
+                queue.add(record);
             }
         } else {
-            queue.add(visitor);
+            queue.add(record);
         }
     }
 
@@ -68,13 +69,13 @@ public class MedicalCenter {
         if (this.queue.size() == 0) {
             return 0;
         } else {
-            ArrayList<Visitor> visitors = new ArrayList<>(queue);
-            Collections.sort(visitors);
-            return visitors.get(visitors.size() - 1).getTimeArrived();
+            List<Appointment> queue = new ArrayList<>(this.queue);
+            Collections.sort(queue);
+            return queue.get(queue.size() - 1).getTimeArrived();
         }
     }
 
-    public int getCountOfVisitors() {
+    public int getCountOfRecords() {
         return queue.size();
     }
 }

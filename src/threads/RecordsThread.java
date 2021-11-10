@@ -1,15 +1,15 @@
 package threads;
 
+import models.Appointment;
 import models.MedicalCenter;
-import models.Visitor;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class PatientThread extends Thread{
+public class RecordsThread extends Thread{
 
     private MedicalCenter medicalCenter;
-    public PatientThread(String name, MedicalCenter medicalCenter) {
+    public RecordsThread(String name, MedicalCenter medicalCenter) {
         super(name);
         this.medicalCenter = medicalCenter;
     }
@@ -18,7 +18,7 @@ public class PatientThread extends Thread{
         System.out.println(Thread.currentThread().getName() + " started...\n");
 
         long beginTime = System.nanoTime();
-        final long MINUTE = 60000000000L;
+        final long MINUTE = 60 *1000 * 1000 * 1000L;
         long endTime = beginTime + MINUTE;
         while(System.nanoTime() <= endTime) {
             int time = (int)(( Math.random() * (10 - 0 + 1) + 0));
@@ -30,18 +30,22 @@ public class PatientThread extends Thread{
             }
 
             Random random = new Random();
-            Visitor visitor = new Visitor("Patient" + (medicalCenter.getCountOfVisitors() + 1),
-                    "LastName" + (medicalCenter.getCountOfVisitors() + 1),
+            Appointment record = new Appointment(
+                    "Patient" + (medicalCenter.getCountOfRecords() + 1),
                     random.nextBoolean(),
-                    this.medicalCenter.getLastArrivalTime() + time);
-            System.out.println(visitor.getFirstName() + " " + visitor.ticketAvailability()
-                    + " arrived to " + visitor.getTimeArrived() + "\n");
-            medicalCenter.therapistTraffic(visitor);
+                    this.medicalCenter.getLastArrivalTime() + time
+            );
+            System.out.println(
+                    record.getFirstName() + " " +
+                            record.ticketAvailability() + " arrived to " +
+                            record.getTimeArrived() + "\n"
+            );
+            medicalCenter.therapistTraffic(record);
 
             System.out.println("Doctor " + medicalCenter.getDoctorsName() + " is there");
-            ArrayList<Visitor> queue = medicalCenter.getQueue();
-            for (int i = 0; i < queue.size(); i++) {
-                System.out.println(queue.get(i));
+            List<Appointment> queue = medicalCenter.getQueue();
+            for (Appointment _record : queue) {
+                System.out.println(_record);
             }
             System.out.println();
         }
