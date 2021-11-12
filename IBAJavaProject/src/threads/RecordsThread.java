@@ -1,6 +1,7 @@
 package threads;
 
 import models.Appointment;
+import models.Human;
 import models.MedicalCenter;
 
 import java.util.List;
@@ -31,12 +32,14 @@ public class RecordsThread extends Thread{
 
             Random random = new Random();
             Appointment record = new Appointment(
-                    "Patient" + (medicalCenter.getCountOfRecords() + 1),
+                    new Human(
+                            "Patient" + (medicalCenter.getCountOfRecords() + 1),
+                            "LastName" + (medicalCenter.getCountOfRecords() + 1)),
                     random.nextBoolean(),
                     this.medicalCenter.getLastArrivalTime() + time
             );
             System.out.println(
-                    record.getFirstName() + " " +
+                    record.getPerson().getFirstName() + " " +
                             record.ticketAvailability() + " arrived to " +
                             record.getTimeArrived() + "\n"
             );

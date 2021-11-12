@@ -1,6 +1,5 @@
 package mypackage;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.*;
 
@@ -14,12 +13,9 @@ public class Main {
                 .map(el -> el + " " + getPoint(el))
                 .collect(Collectors.toList());
 
-        stringList.stream().sorted(new Comparator<String>() {
-            @Override
-            public int compare(String str1, String str2) {
-                return Integer.parseInt(str2.split(" ")[0]) - Integer.parseInt(str1.split(" ")[0]);
-            }
-        }).forEach(el -> System.out.print(el + " "));
+        stringList.stream()
+                .sorted((str1, str2) -> Integer.parseInt(str2.split(" ")[0]) - Integer.parseInt(str1.split(" ")[0]))
+                .forEach(el -> System.out.print(el + " "));
     }
 
     public static String getPoint(int number) {

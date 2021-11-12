@@ -1,22 +1,22 @@
 package models;
 
 public class Appointment  implements Comparable<Appointment>{
-    private String firstName;
+    private Person person;
     private boolean hasTicket;
     private int timeArrived;
 
-    public Appointment(String firstName, boolean hasTicket, int timeArrived) {
-        this.firstName = firstName;
+    public Appointment(Person person, boolean hasTicket, int timeArrived) {
+        this.person = person;
         this.hasTicket = hasTicket;
         this.timeArrived = timeArrived;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public boolean isHasTicket() {
@@ -53,7 +53,11 @@ public class Appointment  implements Comparable<Appointment>{
 
     @Override
     public String toString() {
-        return this.firstName + " " + this.hasTicket + " " + this.timeArrived;
+        return "Appointment{" +
+                "person=" + person +
+                ", hasTicket=" + hasTicket +
+                ", timeArrived=" + timeArrived +
+                '}';
     }
 
     @Override
