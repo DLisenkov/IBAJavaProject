@@ -1,2 +1,4 @@
-*/.idea
-*/out/*
+# Intellij IDEA #
+.idea
+out/
+*.iml
