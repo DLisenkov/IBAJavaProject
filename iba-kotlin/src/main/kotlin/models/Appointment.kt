@@ -1,7 +1,7 @@
 package models
 
 class Appointment(var firstName: String, var isHasTicket: Boolean, var timeArrived: Int) :
-    Comparable<Appointment?> {
+        Comparable<Appointment?> {
 
     fun ticketAvailability(): String {
         return if (isHasTicket) {
@@ -19,7 +19,7 @@ class Appointment(var firstName: String, var isHasTicket: Boolean, var timeArriv
         if (attendance != null) {
             return timeArrived - attendance.timeArrived
         }
-        return 0;
+        return 0
     }
 
     companion object {

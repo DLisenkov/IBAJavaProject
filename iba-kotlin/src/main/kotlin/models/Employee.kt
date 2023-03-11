@@ -1,7 +1,7 @@
 package models
 
 class Employee(firstName: String?, lastName: String?, var status: Int, var id: Int, var rate: Int) :
-    Human(firstName, lastName) {
+        Human(firstName, lastName) {
 
     //private int hoursPerMonth = 120;
     private var workedHoursThisMonth = 0

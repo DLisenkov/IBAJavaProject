@@ -19,14 +19,14 @@ class RecordsThread(name: String?, private val medicalCenter: MedicalCenter) : T
             }
             val random = Random()
             val record = Appointment(
-                "Patient" + (medicalCenter.countOfRecords + 1),
-                random.nextBoolean(),
-                medicalCenter.lastArrivalTime + time
+                    "Patient" + (medicalCenter.countOfRecords + 1),
+                    random.nextBoolean(),
+                    medicalCenter.lastArrivalTime + time
             )
             println(
-                record.firstName + " " +
-                        record.ticketAvailability() + " arrived to " +
-                        record.timeArrived + "\n"
+                    record.firstName + " " +
+                            record.ticketAvailability() + " arrived to " +
+                            record.timeArrived + "\n"
             )
             medicalCenter.therapistTraffic(record)
             println("Doctor " + medicalCenter.doctorsName + " is there")

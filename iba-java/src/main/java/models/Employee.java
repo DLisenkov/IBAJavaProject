@@ -4,6 +4,7 @@ public class Employee extends Human{
     private int status;
     private int id;
     private int rate;
+
     //private int hoursPerMonth = 120;
     private int workedHoursThisMonth = 0;
 

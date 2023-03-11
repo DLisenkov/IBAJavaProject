@@ -7,9 +7,10 @@ import models.MedicalCenter;
 import java.util.List;
 import java.util.Random;
 
-public class RecordsThread extends Thread{
+public class RecordsThread extends Thread {
 
     private MedicalCenter medicalCenter;
+
     public RecordsThread(String name, MedicalCenter medicalCenter) {
         super(name);
         this.medicalCenter = medicalCenter;
@@ -19,13 +20,13 @@ public class RecordsThread extends Thread{
         System.out.println(Thread.currentThread().getName() + " started...\n");
 
         long beginTime = System.nanoTime();
-        final long MINUTE = 60 *1000 * 1000 * 1000L;
+        final long MINUTE = 60 * 1000 * 1000 * 1000L;
         long endTime = beginTime + MINUTE;
-        while(System.nanoTime() <= endTime) {
-            int time = (int)(( Math.random() * (10 - 0 + 1) + 0));
+        while (System.nanoTime() <= endTime) {
+            int time = (int) ((Math.random() * (10 + 1) + 0));
 
             try {
-                Thread.sleep(time*1000);
+                Thread.sleep(time * 1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

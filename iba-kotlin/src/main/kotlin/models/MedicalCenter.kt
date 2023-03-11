@@ -5,6 +5,7 @@ import java.util.*
 class MedicalCenter(var doctorsName: String) {
     private val INSURANCE = 100
     var queue: MutableList<Appointment> = ArrayList()
+
     @JvmName("getQueue1")
     fun getQueue(): List<Appointment> {
         return queue

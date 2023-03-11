@@ -1,6 +1,6 @@
 package models;
 
-public class Appointment  implements Comparable<Appointment>{
+public class Appointment implements Comparable<Appointment> {
     private Person person;
     private boolean hasTicket;
     private int timeArrived;

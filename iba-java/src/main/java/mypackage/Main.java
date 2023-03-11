@@ -1,8 +1,6 @@
 package mypackage;
 
 import models.Appointment;
-//import models.Employee;
-//import models.Human;
 import models.Human;
 import models.MedicalCenter;
 import threads.RecordsThread;

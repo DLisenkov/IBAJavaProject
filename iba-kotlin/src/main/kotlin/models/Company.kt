@@ -6,7 +6,7 @@ class Company {
     private val TAX = 0.13
     private var employees: MutableList<Employee>? = null
 
-    internal constructor() {}
+    internal constructor()
     internal constructor(name: String?, city: String?) {
         this.name = name
         this.city = city
